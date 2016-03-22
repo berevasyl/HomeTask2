@@ -257,9 +257,9 @@ public class HomeTask2 {
 //        System.out.println(decimalToBinary(119) + "(2) = " + binaryToDecimal(decimalToBinary(119)) + "(10)");
 //        System.out.println(decimalToOctal(119) + "(8) = " + octalToDecimal(decimalToOctal(119)) + "(10)");
 //        System.out.println(decimalToHex(65535) + "(16) = " + hexToDecimal(decimalToHex(65535)) + "(10)");
-////        for (int i = 0; i <= 0x0FFF; i++) {
-////            System.out.printf("%d(10) = %d(16)\n", i, decimalToHex(i));
-////        }
+//        for (int i = 0; i <= 0x0FFF; i++) {
+//            System.out.printf("%d(10) = %d(16)\n", i, decimalToHex(i));
+//        }
 //    }
 
 }
