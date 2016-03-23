@@ -1,4 +1,6 @@
 package org.sourceit;
+import java.util.Random;
+import static java.lang.Math.*;
 
 public class HomeTask2 {
 
@@ -9,7 +11,14 @@ public class HomeTask2 {
      * @return бинарная форма числа
      */
     public static long decimalToBinary(int number) {
-        return -1;
+        long decimalNumber = 0,
+                poryadok = 1;
+        while (number > 0){
+            decimalNumber += (number % 2) * poryadok;
+            number /= 2;
+            poryadok *= 10;
+        }
+        return decimalNumber;
     }
 
     /**
@@ -19,7 +28,14 @@ public class HomeTask2 {
      * @return октальная форма числа
      */
     public static long decimalToOctal(int number) {
-        return -1;
+        long decimalNumber = 0,
+                poryadok = 1;
+        while (number > 0){
+            decimalNumber += (number % 8) * poryadok;
+            number /= 8;
+            poryadok *= 10;
+        }
+        return decimalNumber;
     }
 
     /**
@@ -29,7 +45,14 @@ public class HomeTask2 {
      * @return хексовая форма числа
      */
     public static long decimalToHex(int number) {
-        return -1;
+        long decimalNumber = 0,
+                poryadok = 1;
+        while (number > 0){
+            decimalNumber += (number % 16) * poryadok;
+            number /= 16;
+            poryadok *= 100;
+        }
+        return decimalNumber;
     }
 
     /**
@@ -39,7 +62,14 @@ public class HomeTask2 {
      * @return десятичное число
      */
     public static int binaryToDecimal(long binary) {
-        return -1;
+        int decimalNumber = 0,
+                poryadok = 1;
+        while (binary > 0){
+            decimalNumber += (binary % 10) * poryadok;
+            binary /= 10;
+            poryadok *= 2;
+        }
+        return decimalNumber;
     }
 
     /**
@@ -49,7 +79,14 @@ public class HomeTask2 {
      * @return десятичное число
      */
     public static int octalToDecimal(long octal) {
-        return -1;
+        int decimalNumber = 0,
+                poryadok = 1;
+        while (octal > 0){
+            decimalNumber += (octal % 10) * poryadok;
+            octal /= 10;
+            poryadok *= 8;
+        }
+        return decimalNumber;
     }
 
     /**
@@ -59,7 +96,14 @@ public class HomeTask2 {
      * @return десятичное число
      */
     public static int hexToDecimal(long hex) {
-        return -1;
+        int decimalNumber = 0,
+                poryadok = 1;
+        while (hex > 0){
+            decimalNumber += (hex % 100) * poryadok;
+            hex /= 100;
+            poryadok *= 16;
+        }
+        return decimalNumber;
     }
 
     /**
@@ -70,7 +114,12 @@ public class HomeTask2 {
      * @return двумерный массив
      */
     public static int[][] generateTwoDimensionArray(int rows, int columns) {
-        return null;
+        int[][] twoDimensionArray = new int [rows] [columns];
+        Random randNum = new Random();
+        for(int i = 0; i < rows; i++)
+            for(int j =0; j < columns; j++)
+                twoDimensionArray[i][j] = randNum.nextInt(100);
+        return twoDimensionArray;
     }
 
     /**
@@ -83,7 +132,20 @@ public class HomeTask2 {
      * @return индекс строки
      */
     public static int findMaxProduct(int[][] input) {
-        return 1;
+        long maxProduct = 0l;
+        int indexLine = 0;
+        for (int i = 0; i < input.length; i++) {
+            long maxProductLine = 1;
+            for(int j = 0; j <  input[i].length; j++) {
+                maxProductLine *= abs(input[i][j]);
+            }
+            if (maxProductLine > maxProduct) {
+                maxProduct = maxProductLine;
+                indexLine = i;
+            }
+//            System.out.printf("Рядок %2d добуток %20d max %20d\n", i, maxProductLine, maxProduct);
+        }
+        return indexLine;
     }
 
     /**
@@ -93,9 +155,30 @@ public class HomeTask2 {
      * @return массив простых чисел.
      */
     public static int[] getSimple(int n) {
-        return null;
+        int m = 0;
+        for(int i =2; i <= n; i++ ){
+            if (isSimple(i)) m++;
+        }
+        int[] simpleNumbers = new int[m];
+        int j = 0;
+        for(int i =2; i <= n; i++ ){
+            if (isSimple(i)) {
+                simpleNumbers[j] = i;
+                j++;
+            }
+        }
+        return simpleNumbers;
     }
 
+    static boolean isSimple (int a) {
+        int i = 2;
+        boolean isSimple = true;
+        while (i <= a / 2) {
+            if (a % i == 0) isSimple = false;
+            i++;
+        }
+        return isSimple;
+    }
     // Рекурсивные методы. Реализовать их нужно с помощью рекурсии.
 
     /**
@@ -105,8 +188,17 @@ public class HomeTask2 {
      * @return сумма
      */
     public static long sum(int n) {
-        return 0;
+        long sumN = n;
+        if (n < 0) sumN = 0;
+        if (n > 0) sumN += sum(n - 1);
+        return sumN;
+
     }
+
+//    public static long sum(int n) {
+//        return (n * (n + 1)) / 2;
+//
+//    }
 
     /**
      * Метод вычисляет, результат умножения.
@@ -116,7 +208,59 @@ public class HomeTask2 {
      * @return
      */
     public static int product(int first, int second) {
-        return -1;
+        return first * second;
     }
 
+
+
+
+
+
+
+//    public static void main (String args[]){
+//        System.out.println("5 \u00B7 6 = " + product(5, 6) + "\nΣx, (x = 1, 10) = " + sum(10));
+//
+//        int SimpleNumbers [] = new int [30];
+//        SimpleNumbers = getSimple (30);
+//        System.out.print("SimpleNumbers :");
+//        for (int i = 0; i < SimpleNumbers.length; i++ ) {
+//            if (SimpleNumbers[i] != 0) System.out.print(SimpleNumbers[i] + "  ");
+//        }
+//        System.out.println();
+//
+//        System.out.println("GenerateTwoDimensionArray :");
+//        int m =10, n = 10;
+//        int twoDimensionArray [][] = new int [m][n];
+//        twoDimensionArray = generateTwoDimensionArray(m, n);
+//        for (int i = 0; i < m; i++ ) {
+//            for (int j = 0; j < n; j++) {
+//
+//                System.out.printf("%12d  ", twoDimensionArray[i][j]);
+//            }
+//
+//            System.out.println();
+//        }
+//
+//        int[][] array = {
+//                {1, 2, 3, 4},
+//                {1, 3, 6, 7},
+//                {5, 6, 7, 9},
+//                {10, 5, 3, 4}
+//
+//        };
+//        System.out.println("Index max\u03A0 = " + findMaxProduct (array));
+//        System.out.println("Index max\u03A0 = " + findMaxProduct (twoDimensionArray));
+//        System.out.println("119(10) = " + decimalToBinary(119) + "(2)");
+//        System.out.println("119(10) = " + decimalToOctal(119) + "(8)");
+//        System.out.println("65535(10) = " + decimalToHex(65535) + "(16)");
+//        System.out.println("100(10) = " + decimalToHex(100) + "(16)");
+//        System.out.println(decimalToBinary(119) + "(2) = " + binaryToDecimal(decimalToBinary(119)) + "(10)");
+//        System.out.println(decimalToOctal(119) + "(8) = " + octalToDecimal(decimalToOctal(119)) + "(10)");
+//        System.out.println(decimalToHex(65535) + "(16) = " + hexToDecimal(decimalToHex(65535)) + "(10)");
+//        for (int i = 0; i <= 0x0FFF; i++) {
+//            System.out.printf("%d(10) = %d(16)\n", i, decimalToHex(i));
+//        }
+//    }
+
 }
+
