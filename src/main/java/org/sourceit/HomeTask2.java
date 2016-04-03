@@ -189,8 +189,7 @@ public class HomeTask2 {
      */
     public static long sum(int n) {
         long sumN = n;
-        if (n < 0) sumN = 0;
-        if (n > 0) sumN += sum(n - 1);
+        sumN = n < 0 ? 0 : sumN + sum(n - 1);
         return sumN;
 
     }
@@ -208,7 +207,9 @@ public class HomeTask2 {
      * @return
      */
     public static int product(int first, int second) {
-        return first * second;
+        if (abs(second) > 1)
+            return (second > 0 ? first : - first) + product(first, second > 0 ? --second : ++second);
+        return second > 0 ? first : - first;
     }
 
 
@@ -259,6 +260,11 @@ public class HomeTask2 {
 //        System.out.println(decimalToHex(65535) + "(16) = " + hexToDecimal(decimalToHex(65535)) + "(10)");
 //        for (int i = 0; i <= 0x0FFF; i++) {
 //            System.out.printf("%d(10) = %d(16)\n", i, decimalToHex(i));
+//    System.out.println(product(2, 4));
+//    System.out.println(product(-2, 4));
+//    System.out.println(product(-2, -4));
+//    System.out.println(product(2, -4));
+//
 //        }
 //    }
 
